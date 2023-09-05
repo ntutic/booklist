@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book list</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Read</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:if="${books.empty}">
+                <td colspan="4">No books available</td>
+            </tr>
+            <tr th:each="book: ${books}">
+                <td><span th:text="${book.name}">Name</span></td>
+                <td><span th:text="${book.author}">Author</span></td>
+                <td><span th:text="${book.isbn}">ISBN</span></td>
+                <td>
+                    <span th:if="${book.read}">Yes</span>
+                    <span th:if="${!book.read}">No</span>
+                </td>
+            </tr>
+            <form method="POST">
+                <td><input type="text" name="name" id="name"></td>
+                <td><input type="text" name="author" id="author"></td>
+                <td><input type="text" name="isbn" id="isbn"></td>
+                <td><input type="checkbox" name="read" id="read"></td>
+                <td><input type="submit" value="+"></td>
+            </form>
+
+        </tbody>
+    </table>
+</body>
+</html>
